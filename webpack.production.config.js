@@ -6,6 +6,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 let OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
+//让 __dirname不保错
 let __dirname = path.resolve(path.dirname(''));
 
 module.exports = {
@@ -18,22 +19,27 @@ module.exports = {
         rules: [
             {
                 test: /(\.jsx|\.js)$/,
-                use: ["babel-loader", 'eslint'],
+                use: {
+                    loader: "babel-loader",
+                },
                 exclude: /node_modules/
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                exclude: /node_modules/,
+                use:[ 'style-loader','css-loader','postcss-loader']
+            },
+            {
+                test: /\.(png|woff|woff2|svg|ttf|eot)($|\?)/i,
+                use: ["url-loader?limit=5000"],
                 exclude: /node_modules/
             },
             {
                 test: /\.(png|woff|woff2|svg|ttf|eot)($|\?)/i,
-                use: {'loader': "url-loader?limit=5000"}
+                use: ["url-loader?limit=5000"],
+                exclude: /node_modules/
             },
-            {
-                test: /\.(png|woff|woff2|svg|ttf|eot)($|\?)/i,
-                use: {'loader': "url-loader?limit=5000"}
-            }
+
         ]
     },
     plugins: [
@@ -48,11 +54,10 @@ module.exports = {
         // 打开浏览器
         new OpenBrowserPlugin({
             url: 'http://localhost:8080'
-        })
+        }),
+
     ],
-
-    devtool: 'eval-source-map',
-
+	devtool: 'eval-source-map',
     devServer: {
         historyApiFallback: true, //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
         inline: true, //实时刷新
