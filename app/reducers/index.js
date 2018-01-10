@@ -4,4 +4,4 @@ import userinfo from './userinfo'
 
 export default combineReducers({
     userinfo
-})
+});

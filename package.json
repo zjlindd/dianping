@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack",
+    "start": "set NODE_ENV=dev && webpack-dev-server --progress",
     "server": "webpack-dev-server --open",
     "mock": "node --harmony ./mock/server.js",
     "build": "set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress"
@@ -43,7 +43,7 @@
     "koa-router": "^5.4.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "open-browser-webpack-plugin": "0.0.2",
+    "open-browser-webpack-plugin": "^0.0.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.0.10",
     "react-transform-hmr": "^1.0.4",
@@ -53,8 +53,8 @@
     "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.1",
     "es6-promise": "^3.2.1",
     "immutable": "^3.8.1",
     "react-addons-css-transition-group": "^15.3.1",
