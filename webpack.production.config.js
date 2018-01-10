@@ -24,6 +24,9 @@ module.exports = {
         inline: true, //实时刷新
         hot: true
     },
+    resolve:{
+        extensions:[' ', '.js','.jsx']
+    },
     module: {
         rules: [
             {
